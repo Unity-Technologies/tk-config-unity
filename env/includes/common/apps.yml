@@ -1,0 +1,67 @@
+# Copyright (c) 2016 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
+# this file contains apps that are common to multiple applications
+# and setups
+
+includes:
+- frameworks.yml
+
+# full app settings
+
+common.apps.tk-multi-about:
+  location:
+    version: v0.2.8
+    type: app_store
+    name: tk-multi-about
+
+common.apps.tk-multi-pythonconsole:
+  location:
+    version: v1.1.2
+    type: app_store
+    name: tk-multi-pythonconsole
+
+common.apps.tk-multi-setframerange:
+  location:
+    version: v0.3.0
+    type: app_store
+    name: tk-multi-setframerange
+
+# locations for common apps
+
+common.apps.tk-multi-publish2.location:
+  type: app_store
+  name: tk-multi-publish2
+  version: v2.1.6
+
+common.apps.tk-multi-loader2.location:
+  type: app_store
+  name: tk-multi-loader2
+  version: v1.19.1
+
+common.apps.tk-multi-shotgunpanel.location:
+  type: app_store
+  name: tk-multi-shotgunpanel
+  version: v1.6.2
+
+common.apps.tk-multi-launchapp.location:
+  type: app_store
+  name: tk-multi-launchapp
+  version: v0.10.0
+
+common.apps.tk-nuke-quickreview.location:
+  type: app_store
+  name: tk-nuke-quickreview
+  version: v1.0.3
+
+# help urls
+
+common.apps.tk-multi-publish2.help_url: https://support.shotgunsoftware.com/hc/en-us/articles/115000068574-Integrations-User-Guide#The%20Publisher
