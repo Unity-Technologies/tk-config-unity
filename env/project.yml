@@ -17,6 +17,7 @@ includes:
 - includes/maya/project.yml
 - includes/nuke/project.yml
 - includes/flame/project.yml
+- includes/unity/project.yml
 - includes/desktop/project.yml
 - includes/shell/project.yml
 - includes/photoshopcc/project.yml
@@ -34,3 +35,4 @@ engines:
   tk-3dsmaxplus: '@3dsmax.project'
   tk-shotgun: '@shotgun.all'
   tk-flame: '@flame.project'
+  tk-unity: '@unity.project'

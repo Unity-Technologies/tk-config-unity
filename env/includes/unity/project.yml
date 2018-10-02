@@ -1,0 +1,29 @@
+# this configuration defines the behavior of the Maya Integration when it
+# is running in its project level configuration
+
+includes:
+- ../common/engines.yml
+- ../common/apps.yml
+
+
+unity.project:
+  apps:
+    tk-multi-about: '@common.apps.tk-multi-about'
+
+    tk-multi-publish2:
+      location: "@common.apps.tk-multi-publish2.location"
+
+    tk-multi-loader2:
+      location: "@common.apps.tk-multi-loader2.location"
+
+    tk-multi-shotgunpanel:
+      location: '@common.apps.tk-multi-shotgunpanel.location'
+
+    tk-multi-pythonconsole: '@common.apps.tk-multi-pythonconsole'
+
+  location: "@common.engines.tk-unity.location"
+  menu_favourites: []
+  run_at_startup:
+  - {app_instance: tk-multi-shotgunpanel, name: ''}
+  launch_builtin_plugins: [basic]
+  automatic_context_switch: false
