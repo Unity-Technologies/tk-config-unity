@@ -4,6 +4,7 @@
 includes:
 - ../common/engines.yml
 - ../common/apps.yml
+- apps.yml
 
 
 unity.project:
@@ -13,8 +14,7 @@ unity.project:
     tk-multi-publish2:
       location: "@common.apps.tk-multi-publish2.location"
 
-    tk-multi-loader2:
-      location: "@common.apps.tk-multi-loader2.location"
+    tk-multi-loader2: "@unity.apps.tk-multi-loader2"
 
     tk-multi-shotgunpanel:
       location: '@common.apps.tk-multi-shotgunpanel.location'
