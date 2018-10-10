@@ -11,8 +11,7 @@ unity.project:
   apps:
     tk-multi-about: '@common.apps.tk-multi-about'
 
-    tk-multi-publish2:
-      location: "@common.apps.tk-multi-publish2.location"
+    tk-multi-publish2: "@unity.apps.tk-multi-publish2"
 
     tk-multi-loader2: "@unity.apps.tk-multi-loader2"
 
