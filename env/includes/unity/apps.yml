@@ -25,8 +25,11 @@ unity.apps.tk-multi-publish2:
   #- name: Begin file versioning
   #  hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
   #  settings: {}
-  - name: Render and Publish to Shotgun
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+  #- name: Publish to Shotgun
+  #  hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
+  #  settings: {}
+  - name: Upload for review
+    hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_movie.py"
     settings: {}
   location: "@common.apps.tk-multi-publish2.location"
 
