@@ -51,6 +51,7 @@ desktop.project:
     - '*Photoshop*'
     - 'CC*'
     - '*Softimage*'
+    - '*Unity*'
     name: Creative Tools
   - matches:
     - '*Hiero*'
