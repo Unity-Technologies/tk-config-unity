@@ -1,0 +1,12 @@
+keys:
+    name:
+        type: str
+        filter_by: alphanumeric
+    version:
+        type: int
+        format_spec: "03"
+        
+paths:
+    unity_asset_publish:
+        definition: 'assets/Grave_temp/{name}.v{version}.fbx'
+        root_name: 'primary'
