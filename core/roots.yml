@@ -13,3 +13,9 @@
 # to the correct location.
 
 # the zero configuration setup does not define any storage points.
+primary:
+  description: "A top-level root folder where all production data lives.  Project folders will be created beneath this location."
+  mac_path:
+  linux_path:
+  windows_path:
+  default: true

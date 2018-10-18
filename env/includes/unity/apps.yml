@@ -16,6 +16,10 @@ includes:
 - ../common/apps.yml
 - ../common/settings/tk-multi-publish2.yml
 
+unity.apps.tk-multi-breakdown:
+  hook_scene_operations: "{engine}/tk-multi-breakdown/tk-unity_scene_operations.py"
+  location: "@common.apps.tk-multi-breakdown.location"
+  
 unity.apps.tk-multi-publish2:
   help_url: "@common.apps.tk-multi-publish2.help_url"
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
