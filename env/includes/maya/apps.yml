@@ -38,6 +38,7 @@ maya.apps.tk-multi-loader2:
     Photoshop Image: [texture_node, image_plane]
     Rendered Image: [texture_node, image_plane]
     Texture: [texture_node, image_plane]
+    Motion Builder FBX: [import]
   actions_hook: '{self}/tk-maya_actions.py'
   entities:
   - caption: Current Project
