@@ -18,7 +18,7 @@ includes:
 
 maya.apps.tk-multi-publish2:
   help_url: "@common.apps.tk-multi-publish2.help_url"
-  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py:{config}/tk-maya/tk-multi-publish2/basic/collector.py"
   publish_plugins:
   - '@common.settings.tk-multi-publish2.publish_file'
   - '@common.settings.tk-multi-publish2.upload_version'
