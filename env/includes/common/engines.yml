@@ -69,5 +69,4 @@ common.engines.tk-shotgun.location:
 common.engines.tk-unity.location:
     type: git_branch
     path: git@github.com:Unity-Technologies/tk-unity.git
-    branch: simple_startup
-    version: 584eacabb1d212ce91aaa3688a64da2540a826fb
+    branch: v0.1
