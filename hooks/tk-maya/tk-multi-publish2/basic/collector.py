@@ -101,10 +101,52 @@ class MayaSessionCollectorExt(HookBaseClass):
         
         # build FBX filename using Maya Session name which is also the 
         # publishing filename e.g. Rock.mb
+        # This will be the fallback path if no publish or work template exist
         candidate_item = os.path.splitext(parent_item.name)[0]
         candidate_filename = candidate_item + ".fbx"
-        
         fbx_path = os.path.join(fbx_dir, candidate_filename)
+        
+        # Get the publish and work templates, to use for determining the fbx file name
+        publish_template_setting = settings.get("Publish Template")
+        publish_template = self.parent.engine.get_template_by_name(
+            publish_template_setting.value)
+            
+        work_template_setting = settings.get("Work Template")
+        work_template = self.parent.engine.get_template_by_name(
+            work_template_setting.value)
+        
+        if work_template:
+            # get the work template fields from the Maya file
+            maya_path = cmds.file(query=True, sn=True)
+            if isinstance(maya_path, unicode):
+                maya_path = maya_path.encode("utf-8")
+            maya_path = sgtk.util.ShotgunPath.normalize(maya_path)
+            maya_path = "{0}.fbx".format(os.path.splitext(maya_path)[0])
+            
+            fields = work_template.get_fields(maya_path)
+            if publish_template:
+                # get the publish path by applying the work template fields to the publish template
+                # TODO: find a more reliable way to do this as the fields might not always match up
+                publish_path = publish_template.apply_fields(fields)
+                publish_path = os.path.dirname(publish_path)
+                
+                # get maximum version of fbx that has been published
+                # if none just use the Maya filename without the version
+                max_version = 1
+                for file in os.listdir(publish_path):
+                    if not file.endswith(".fbx"):
+                        continue
+                    file_path = os.path.join(publish_path, file)
+                    publish_fields = publish_template.get_fields(file_path)
+                    version = publish_fields.get("version")
+                    if version and version > max_version:
+                        max_version = version
+                
+                fields["version"] = max_version
+                
+                # set the path
+                fbx_path = work_template.apply_fields(fields)
+                self.logger.debug("FBX PATH: " + fbx_path)
         
         if os.path.exists(fbx_path):
             self.logger.debug("overwriting existing FBX file: %s" % (fbx_path,))
@@ -119,15 +161,9 @@ class MayaSessionCollectorExt(HookBaseClass):
             fbx_path
         )
         
-        publish_template_setting = settings.get("Publish Template")
-        publish_template = self.parent.engine.get_template_by_name(
-            publish_template_setting.value)
         if publish_template:
             item.properties["publish_template"] = publish_template
             
-        work_template_setting = settings.get("Work Template")
-        work_template = self.parent.engine.get_template_by_name(
-            work_template_setting.value)
         if work_template:
             item.properties["work_template"] = work_template
 
