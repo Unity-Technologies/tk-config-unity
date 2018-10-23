@@ -132,7 +132,7 @@ class MayaSessionCollectorExt(HookBaseClass):
                 
                 # get maximum version of fbx that has been published
                 # if none just use the Maya filename without the version
-                max_version = 1
+                max_version = 0
                 for file in os.listdir(publish_path):
                     if not file.endswith(".fbx"):
                         continue
@@ -142,7 +142,7 @@ class MayaSessionCollectorExt(HookBaseClass):
                     if version and version > max_version:
                         max_version = version
                 
-                fields["version"] = max_version
+                fields["version"] = max_version + 1
                 
                 # set the path
                 fbx_path = work_template.apply_fields(fields)
