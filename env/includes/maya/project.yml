@@ -17,10 +17,29 @@ includes:
 - ../common/apps.yml
 - apps.yml
 
+maya.asset_step:
+  apps:
+    #tk-multi-about: '@common.apps.tk-multi-about'
+    
+    tk-multi-workfiles2: '@maya.apps.tk-multi-workfiles2.asset_step'
+
+    #tk-multi-publish2: '@maya.apps.tk-multi-publish2.asset_step'
+
+    #tk-multi-loader2: '@maya.apps.tk-multi-loader2'
+
+    #tk-multi-shotgunpanel: '@maya.apps.tk-multi-shotgunpanel'
+  menu_favourites:
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
+  template_project: asset_work_area_maya
+  automatic_context_switch: false
+  location: "@common.engines.tk-maya.location"
 
 maya.project:
   apps:
     tk-multi-about: '@common.apps.tk-multi-about'
+    
+    tk-multi-workfiles2: '@maya.apps.tk-multi-workfiles2'
 
     tk-multi-publish2: '@maya.apps.tk-multi-publish2'
 
@@ -29,10 +48,11 @@ maya.project:
     tk-multi-shotgunpanel: '@maya.apps.tk-multi-shotgunpanel'
 
   location: "@common.engines.tk-maya.location"
-  menu_favourites: []
+  menu_favourites: 
+  - {app_instance: tk-multi-workfiles2, name: File Open...}
+  - {app_instance: tk-multi-workfiles2, name: File Save...}
   run_at_startup:
   - {app_instance: tk-multi-shotgunpanel, name: ''}
   launch_builtin_plugins: [basic]
   automatic_context_switch: false
-
 
