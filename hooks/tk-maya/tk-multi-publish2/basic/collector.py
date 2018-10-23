@@ -146,7 +146,6 @@ class MayaSessionCollectorExt(HookBaseClass):
                 
                 # set the path
                 fbx_path = work_template.apply_fields(fields)
-                self.logger.debug("FBX PATH: " + fbx_path)
         
         if os.path.exists(fbx_path):
             self.logger.debug("overwriting existing FBX file: %s" % (fbx_path,))
