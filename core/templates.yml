@@ -414,12 +414,19 @@ paths:
     # The location of WIP files
     maya_asset_work:
         definition: '@asset_root/work/maya/{name}.v{version}.{maya_extension}'
+        
+    maya_fbx_work:
+        definition: '@asset_root/work/maya/{name}.v{version}.fbx'    
+        
     # The location of backups of WIP files
     maya_asset_snapshot:
         definition: '@asset_root/work/maya/snapshots/{name}.v{version}.{timestamp}.{maya_extension}'
     # The location of published maya files
     maya_asset_publish:
         definition: '@asset_root/publish/maya/{name}.v{version}.{maya_extension}'
+        
+    maya_fbx_publish:
+        definition: '@asset_root/publish/maya/{name}.v{version}.fbx'
 
     #
     # Unity

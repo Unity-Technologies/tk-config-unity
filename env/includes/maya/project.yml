@@ -19,15 +19,15 @@ includes:
 
 maya.asset_step:
   apps:
-    #tk-multi-about: '@common.apps.tk-multi-about'
+    tk-multi-about: '@common.apps.tk-multi-about'
     
     tk-multi-workfiles2: '@maya.apps.tk-multi-workfiles2.asset_step'
 
-    #tk-multi-publish2: '@maya.apps.tk-multi-publish2.asset_step'
+    tk-multi-publish2: '@maya.apps.tk-multi-publish2'
 
-    #tk-multi-loader2: '@maya.apps.tk-multi-loader2'
+    tk-multi-loader2: '@maya.apps.tk-multi-loader2'
 
-    #tk-multi-shotgunpanel: '@maya.apps.tk-multi-shotgunpanel'
+    tk-multi-shotgunpanel: '@maya.apps.tk-multi-shotgunpanel'
   menu_favourites:
   - {app_instance: tk-multi-workfiles2, name: File Open...}
   - {app_instance: tk-multi-workfiles2, name: File Save...}

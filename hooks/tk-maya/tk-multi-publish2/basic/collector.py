@@ -22,6 +22,46 @@ class MayaSessionCollectorExt(HookBaseClass):
     Collector that operates on the maya session. Should inherit from the basic
     collector hook.
     """
+    
+    @property
+    def settings(self):
+        """
+        Dictionary defining the settings that this plugin expects to receive
+        through the settings parameter in the accept, validate, publish and
+        finalize methods.
+
+        A dictionary on the following form::
+
+            {
+                "Settings Name": {
+                    "type": "settings_type",
+                    "default": "default_value",
+                    "description": "One line description of the setting"
+            }
+
+        The type string should be one of the data types that toolkit accepts as
+        part of its environment configuration.
+        """
+
+        # inherit the settings from the base publish plugin
+        base_settings = super(MayaSessionCollectorExt, self).settings or {}
+
+        # settings specific to this class
+        maya_publish_settings = {
+            "Publish Template": {
+                "type": "template",
+                "default": None,
+                "description": "Template path for published work files. Should"
+                               "correspond to a template defined in "
+                               "templates.yml.",
+            }
+        }
+
+        # update the base settings
+        base_settings.update(maya_publish_settings)
+
+        return base_settings
+
 
     def process_current_session(self, settings, parent_item):
         """
@@ -41,9 +81,9 @@ class MayaSessionCollectorExt(HookBaseClass):
         self.logger.info("Augmenenting Maya session")
         
         if parent_item.children:                    
-            self.collect_fbx_files(parent_item.children[0], parent_item.children[0].properties["project_root"])
+            self.collect_fbx_files(parent_item.children[0], parent_item.children[0].properties["project_root"], settings)
                                          
-    def collect_fbx_files(self, parent_item, project_root):
+    def collect_fbx_files(self, parent_item, project_root, settings):
         """
         Creates items for FBX versions
         Looks for a 'project_root' property on the parent item, and if such
@@ -53,7 +93,7 @@ class MayaSessionCollectorExt(HookBaseClass):
         """
 
         # ensure the dir exists
-        fbx_dir = os.path.join(project_root, "scenes")
+        fbx_dir = project_root
         if not os.path.exists(fbx_dir):
             return
 
@@ -74,8 +114,20 @@ class MayaSessionCollectorExt(HookBaseClass):
             
         # allow the base class to collect and create the item. it knows how
         # to handle FBX files
-        super(MayaSessionCollectorExt, self)._collect_file(
+        item = super(MayaSessionCollectorExt, self)._collect_file(
             parent_item,
             fbx_path
         )
+        
+        publish_template_setting = settings.get("Publish Template")
+        publish_template = self.parent.engine.get_template_by_name(
+            publish_template_setting.value)
+        if publish_template:
+            item.properties["publish_template"] = publish_template
+            
+        work_template_setting = settings.get("Work Template")
+        work_template = self.parent.engine.get_template_by_name(
+            work_template_setting.value)
+        if work_template:
+            item.properties["work_template"] = work_template
 

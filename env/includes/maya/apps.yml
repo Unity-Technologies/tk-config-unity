@@ -68,7 +68,8 @@ maya.apps.tk-multi-publish2:
   help_url: "@common.apps.tk-multi-publish2.help_url"
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py:{config}/tk-maya/tk-multi-publish2/basic/collector.py"
   collector_settings:
-     Work Template: maya_asset_work
+     Work Template: maya_fbx_work
+     Publish Template: maya_fbx_publish
   publish_plugins:
   - '@common.settings.tk-multi-publish2.upload_version'
   - '@common.settings.tk-multi-publish2.publish_file'  
@@ -76,7 +77,7 @@ maya.apps.tk-multi-publish2:
     hook: "{engine}/tk-multi-publish2/basic/start_version_control.py:{config}/tk-maya/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
   - name: Publish to Shotgun
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py:{config}/tk-maya/tk-multi-publish2/basic/publish_session.py"
+    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
     settings:
         Publish Template: maya_asset_publish
   location: "@common.apps.tk-multi-publish2.location"
