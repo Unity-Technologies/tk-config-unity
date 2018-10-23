@@ -74,7 +74,7 @@ maya.apps.tk-multi-publish2:
   - '@common.settings.tk-multi-publish2.upload_version'
   - '@common.settings.tk-multi-publish2.publish_file'  
   - name: Begin file versioning
-    hook: "{engine}/tk-multi-publish2/basic/start_version_control.py:{config}/tk-maya/tk-multi-publish2/basic/start_version_control.py"
+    hook: "{engine}/tk-multi-publish2/basic/start_version_control.py"
     settings: {}
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session.py"
