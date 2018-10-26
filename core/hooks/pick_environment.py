@@ -20,7 +20,11 @@ class PickEnvironment(Hook):
     """
 
     def execute(self, context, **kwargs):
-
+        if context.entity and context.step:
+            # We have a step and an entity.
+            if context.entity["type"] == "Asset":
+                return "asset_step"
+    
         if context.entity and context.entity["type"] == "Shot":
             return "shot"
 
