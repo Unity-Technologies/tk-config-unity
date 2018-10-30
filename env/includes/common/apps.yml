@@ -66,7 +66,12 @@ common.apps.tk-multi-breakdown.location:
   version: v1.5.0
   type: app_store
   name: tk-multi-breakdown   
-  
+ 
+common.apps.tk-multi-workfiles2.location:
+    version: v0.11.8
+    type: app_store
+    name: tk-multi-workfiles2  
+ 
 # help urls
 
 common.apps.tk-multi-publish2.help_url: https://support.shotgunsoftware.com/hc/en-us/articles/115000068574-Integrations-User-Guide#The%20Publisher
