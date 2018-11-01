@@ -159,6 +159,7 @@ class MayaSessionCollectorExt(HookBaseClass):
             parent_item,
             fbx_path
         )
+        item._set_name(os.path.basename(fbx_path))
         
         if publish_template:
             item.properties["publish_template"] = publish_template
