@@ -1,5 +1,15 @@
 ﻿RELEASE NOTES
 
+**Version**: 0.3
+
+NEW FEATURES
+
+* Updated to tk-core v0.18.159
+
+FIXES
+
+* Fixed a case where suer data was not saved on loaded assets
+
 **Version**: 0.2
 
 NEW FEATURES
