@@ -8,7 +8,7 @@ NEW FEATURES
 
 FIXES
 
-* Fixed a case where suer data was not saved on loaded assets
+* Fixed a case where user data was not saved on loaded assets
 
 **Version**: 0.2
 
