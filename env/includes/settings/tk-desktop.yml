@@ -49,6 +49,7 @@ settings.tk-desktop.project:
     - "*Motion*"
     - "*Nuke*"
     - "*Photoshop*"
+    - "*Unity*"
     name: Creative Tools
   - matches:
     - "*Hiero*"
