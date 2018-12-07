@@ -79,4 +79,9 @@ engines.tk-shotgun.location:
   name: tk-shotgun
   version: v0.8.2
 
-
+# Unity
+engines.tk-unity.location:
+  type: git_branch
+  path: git@github.com:Unity-Technologies/tk-unity.git
+  branch: v0.4
+  version: afe065046245e7b62bf876d8dda73b8ca991b46a
