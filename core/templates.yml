@@ -544,7 +544,7 @@ paths:
     # define the location of a publish area
     asset_publish_area_unity:
         definition: '@asset_root/publish/unity'
-    # The location of published unity  files
+    # The location of published unity files
     unity_asset_publish:
         definition: '@asset_root/publish/unity/{name}.v{version}.fbx'
 
