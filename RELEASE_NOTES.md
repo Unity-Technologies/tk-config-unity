@@ -1,5 +1,10 @@
 ﻿RELEASE NOTES
 
+**Version**: 1.1.15.2
+
+NEW FEATURES
+* Updated to tk-unity-0.6
+
 **Version**: 1.1.15.1
 
 NEW FEATURES
