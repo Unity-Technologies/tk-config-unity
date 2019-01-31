@@ -31,6 +31,7 @@ includes:
 - ./includes/settings/tk-photoshopcc.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
+- ./includes/settings/tk-unity.yml
 
 ################################################################################
 # configuration for all engines to load in a shot context
@@ -45,6 +46,7 @@ engines:
   tk-photoshopcc: "@settings.tk-photoshopcc.shot"
   tk-shell: "@settings.tk-shell.shot"
   tk-shotgun: "@settings.tk-shotgun.shot"
+  tk-unity: "@settings.tk-unity.project"
 
 ################################################################################
 # reference all of the common frameworks
