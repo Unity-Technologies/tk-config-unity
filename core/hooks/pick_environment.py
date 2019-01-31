@@ -12,7 +12,7 @@
 Hook which chooses an environment file to use based on the current context.
 """
 
-from tank import Hook
+from sgtk import Hook
 
 
 class PickEnvironment(Hook):
