@@ -1,5 +1,8 @@
-Overview of tk-config-default2 environment structure
-====================================================
+Overview of tk-config-unity environment structure
+=================================================
+
+The tk-config-unity config is based on the standard tk-config-default2 config. 
+We include its documentation here for convenience:
 
 The `tk-config-default2` config has a different structure than previous 
 configurations provided by toolkit. It has been reorganized based on client 

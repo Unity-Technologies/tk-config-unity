@@ -40,6 +40,7 @@ settings.tk-unity.project:
       location: "@apps.tk-multi-pythonconsole.location"
 
   location: "@engines.tk-unity.location"
-  menu_favourites: []
+  menu_favourites:
+  - {app_instance: tk-multi-loader2, name: Load...}
   launch_builtin_plugins: [basic]
   automatic_context_switch: false

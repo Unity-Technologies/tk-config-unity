@@ -537,17 +537,6 @@ paths:
     nuke_asset_publish:
         definition: '@asset_root/publish/nuke/{name}.v{version}.nk'
 
-    #
-    # Unity
-    #
-    
-    # define the location of a publish area
-    asset_publish_area_unity:
-        definition: '@asset_root/publish/unity'
-    # The location of published unity files
-    unity_asset_publish:
-        definition: '@asset_root/publish/unity/{name}.v{version}.fbx'
-
 #
 # The strings section is similar to the paths section - but rather than defining paths
 # on disk, it contains a list of strings. Strings are typically used when you want to be

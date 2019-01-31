@@ -8,10 +8,8 @@
 # agreement to the Shotgun Pipeline Toolkit Source Code License. All rights 
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
-import glob
 import os
 import maya.cmds as cmds
-import maya.mel as mel
 import sgtk
 
 HookBaseClass = sgtk.get_hook_baseclass()
@@ -22,7 +20,8 @@ class MayaSessionCollectorExt(HookBaseClass):
     Collector that operates on the maya session. Should inherit from the basic
     collector hook.
     """
-    
+
+    # Private interface    
     @property
     def settings(self):
         """

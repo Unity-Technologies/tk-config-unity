@@ -35,11 +35,5 @@ class BeforeRegisterCommand(HookBaseClass):
         :returns: The desired engine instance name.
         :rtype: str
         """
-        # We're going to end up getting a SoftwareVersion for Nuke Studio that
-        # wants to route us to the tk-nuke engine instance. We don't want that, so
-        # we'll redirect to tk-nukestudio.
-        if software_version.product == "NukeStudio":
-            engine_instance_name = "tk-nukestudio"
-
         return engine_instance_name
 
