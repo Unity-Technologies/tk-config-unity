@@ -23,7 +23,7 @@ includes:
 ################################################################################
 
 # project
-settings.tk-unity.project:
+settings.tk-unity.all:
   apps:
     tk-multi-about:
       location: "@apps.tk-multi-about.location"

@@ -45,7 +45,7 @@ engines:
   tk-photoshopcc: "@settings.tk-photoshopcc.project"
   tk-shell: "@settings.tk-shell.project"
   tk-shotgun: "@settings.tk-shotgun.project"
-  tk-unity: "@settings.tk-unity.project"
+  tk-unity: "@settings.tk-unity.all"
 
 ################################################################################
 # reference all of the common frameworks
