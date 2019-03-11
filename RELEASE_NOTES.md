@@ -1,5 +1,12 @@
 ﻿RELEASE NOTES
 
+**Version**: 1.2.1.1
+
+NEW FEATURES
+* Rebased on tk-config-default2 v1.2.1
+* Updated to tk-unity-0.7
+* Unity can now be launched from the Shotgun web client
+
 **Version**: 1.1.15.2
 
 NEW FEATURES
