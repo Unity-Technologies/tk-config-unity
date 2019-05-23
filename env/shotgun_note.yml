@@ -1,4 +1,4 @@
-# Copyright (c) 2017 Shotgun Software Inc.
+# Copyright (c) 2018 Shotgun Software Inc.
 #
 # CONFIDENTIAL AND PROPRIETARY
 #
@@ -9,10 +9,7 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 #
 
-description: Apps and engines loaded when a Version is loaded.
-  By default, the only engine defined here is tk-shotgun. This configuration
-  provides the apps that are necessary to display menu actions in the Shotgun
-  web application by way of Toolkit's browser integration.
+description: Apps and Engines when launching with a Note level context.
 
 ################################################################################
 
@@ -22,10 +19,10 @@ includes:
 - ./includes/settings/tk-unity.yml
 
 ################################################################################
-# configuration for all engines to load in a version context
+# configuration for all engines to load in a project context
 
 engines:
-  tk-shotgun: "@settings.tk-shotgun.version"
+  tk-shotgun: "@settings.tk-shotgun.note"
   tk-unity: "@settings.tk-unity.all"
 
 ################################################################################

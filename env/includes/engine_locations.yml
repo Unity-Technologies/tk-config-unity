@@ -78,3 +78,4 @@ engines.tk-shotgun.location:
 engines.tk-unity.location:
   type: dev
   path: '{CONFIG_FOLDER}/tk-unity'
+  version: v0.7
