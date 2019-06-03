@@ -393,7 +393,7 @@ settings.tk-multi-publish2.unity:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
   publish_plugins:
   - name: Upload for review
-    hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_movie.py"
+    hook: "{self}/upload_version.py:{engine}/tk-multi-publish2/basic/upload_movie.py:{config}/tk-multi-publish2/basic/add_metadata.py"
     settings: {}
   location: "@apps.tk-multi-publish2.location"
 

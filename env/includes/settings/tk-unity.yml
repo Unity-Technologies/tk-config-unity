@@ -33,3 +33,4 @@ settings.tk-unity.all:
   - {app_instance: tk-multi-loader2, name: Load...}
   launch_builtin_plugins: [basic]
   automatic_context_switch: false
+  post_init_hook: "{self}/bootstrap/post_init.py:{config}/tk-unity/bootstrap/apply_metadata.py"
