@@ -8,8 +8,17 @@ to set environment variables or run scripts as part of the app initialization.
 import tank
 import sgtk
 
-import json
 import os
+import sys
+
+# Fix-up sys.path so we can access our utils
+utils_path = os.path.split(__file__)[0]
+utils_path = os.path.join(utils_path, '..', 'utils')
+utils_path = os.path.normpath(utils_path)
+if utils_path not in sys.path:
+    sys.path.append(utils_path)
+
+import unity_metadata
 
 log = sgtk.LogManager.get_logger(__name__)
 
@@ -39,13 +48,8 @@ class BeforeAppLaunch(tank.Hook):
             if not current_entity:
                 return
             
-            metadata_json = self._get_metadata_from_entity(current_entity)
-            metadata = None
-            try:
-                metadata = json.loads(metadata_json)
-            except:
-                log.warning('Ignoring invalid "sg_unity_metadata" ({}) relating to entity {}'.format(metadata, current_entity))
-                
+            sg = multi_launchapp.context.sgtk.shotgun
+            metadata = unity_metadata.get_metadata_from_entity(current_entity, sg)
             if metadata:
                 project_path = metadata.get('project_path')
                 if project_path:
@@ -54,49 +58,6 @@ class BeforeAppLaunch(tank.Hook):
                         # Save our extra args in an environment variable as 
                         # modifying app_args will not work (it is passed by copy)
                         os.environ['SHOTGUN_EXTRA_ARGS'] = ' -projectPath "{}"'.format(project_path)
-                        
-                        # Keep the metadata handy for Unity
-                        os.environ['SHOTGUN_UNITY_METADATA'] = metadata_json
                     else:
                         log.warning('Ignoring invalid project path associated with the entity: "{}"'.format(project_path))
         
-    def _get_metadata_from_entity(self, entity):
-        """
-        From a given entity, find the best metadata dictionary to use
-        
-        If there is metadata defined directly on the entity, then return it
-        Otherwise traverse the dependencies in a minimal way
-        
-        Metadata is stored in a string field named "sg_unity_metadata"
-        
-        Returne None if no metadata was found
-        """
-        multi_launchapp = self.parent
-        sg = multi_launchapp.context.sgtk.shotgun
-
-        metadata = None
-        fields = sg.schema_field_read(entity['type'])
-
-        if fields.get('sg_unity_metadata'):
-            # The field exists on the current entity. Get its value
-            found_entity = sg.find_one(entity['type'], [['id', 'is', entity['id']]], ['sg_unity_metadata'])
-            metadata = found_entity['sg_unity_metadata'] 
-
-        if metadata:
-            return metadata
-
-        # We did not find metadata on the entity. Try to look at its 
-        # dependencies
-        if entity['type'] == 'Note':
-            # If the note is linked to a Version entity, try to get the metadata 
-            # from that Version entity
-            found_entity = sg.find_one(entity['type'], [['id', 'is', entity['id']]], ['note_links'])
-            note_links = found_entity['note_links']
-            for link in note_links:
-                if link['type'] == 'Version':
-                    metadata = self._get_metadata_from_entity(link)
-                    if metadata:
-                        # Return first metadata we find
-                        return metadata
-        
-        return metadata

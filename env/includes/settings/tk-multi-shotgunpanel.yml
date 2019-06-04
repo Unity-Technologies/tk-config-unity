@@ -213,3 +213,20 @@ settings.tk-multi-shotgunpanel.photoshop:
     - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist]
       filters: {}
   location: "@apps.tk-multi-shotgunpanel.location"
+# Unity
+settings.tk-multi-shotgunpanel.unity:
+  actions_hook: "{config}/tk-multi-shotgunpanel/unity_actions.py"
+  action_mappings:
+    PublishedFile:
+    - actions: [publish_clipboard]
+      filters: {}
+    Task:
+    - actions: [assign_task, task_to_ip]
+      filters: {}
+    Version:
+    - actions: [quicktime_clipboard, sequence_clipboard, add_to_playlist, jump_to_frame]
+      filters: {}
+    Note:
+    - actions: [jump_to_frame]
+      filters: {}
+  location: "@apps.tk-multi-shotgunpanel.location"
