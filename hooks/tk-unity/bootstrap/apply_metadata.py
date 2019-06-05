@@ -20,7 +20,7 @@ if utils_path not in sys.path:
 HookBaseClass = sgtk.get_hook_baseclass()
 
 class UnityApplyMetadata(HookBaseClass):
-    def on_post_init(self, engine):
+    def on_post_init(self):
         """
         This method is invoked when tk-unity has successfully initialized
         
@@ -29,9 +29,10 @@ class UnityApplyMetadata(HookBaseClass):
         we try to apply it (open scene) 
         """
         import unity_metadata
+        engine = self.parent
         
         # Call the base class
-        super(UnityApplyMetadata, self).on_post_init(engine)
+        super(UnityApplyMetadata, self).on_post_init()
 
         UnityEngine = unity_connection.get_module('UnityEngine')
         UnityEditor = unity_connection.get_module('UnityEditor')
@@ -43,7 +44,7 @@ class UnityApplyMetadata(HookBaseClass):
 
         # Make sure the right project is currently loaded
         if not unity_metadata.relates_to_current_project(metadata):
-            engine.logger.warning('Not applying Shotgun metadata as it does not relate to the currently loaded project. Metadata = "{}")'.format(pprint.pformat(metadata_project)))
+            self.logger.warning('Not applying Shotgun metadata as it does not relate to the currently loaded project. Metadata = "{}")'.format(pprint.pformat(metadata_project)))
             
             # TODO: could we call UnityEditor.EditorApplication.OpenProject?
             #       What would be the effect on the bootstrap, domain reload, etc.?
