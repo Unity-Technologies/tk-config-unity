@@ -1,3 +1,14 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+#
+
 description: Apps and engines loaded when an Asset is loaded. Since std VFX
   config template has a file system structure which is centered around pipeline
   steps, this environment is largely empty. Most of the work takes place on a
@@ -18,6 +29,7 @@ includes:
 - ./includes/settings/tk-motionbuilder.yml
 - ./includes/settings/tk-nuke.yml
 - ./includes/settings/tk-photoshopcc.yml
+- ./includes/settings/tk-aftereffects.yml
 - ./includes/settings/tk-shell.yml
 - ./includes/settings/tk-shotgun.yml
 - ./includes/settings/tk-unity.yml
@@ -33,6 +45,7 @@ engines:
   tk-motionbuilder: "@settings.tk-motionbuilder.asset"
   tk-nuke: "@settings.tk-nuke.asset"
   tk-photoshopcc: "@settings.tk-photoshopcc.asset"
+  tk-aftereffects: "@settings.tk-aftereffects.asset"
   tk-shell: "@settings.tk-shell.asset"
   tk-shotgun: "@settings.tk-shotgun.asset"
   tk-unity: "@settings.tk-unity.all"

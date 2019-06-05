@@ -1,3 +1,13 @@
+# Copyright (c) 2017 Shotgun Software Inc.
+#
+# CONFIDENTIAL AND PROPRIETARY
+#
+# This work is provided "AS IS" and subject to the Shotgun Pipeline Toolkit
+# Source Code License included in this distribution package. See LICENSE.
+# By accessing, using, copying or modifying this work you indicate your
+# agreement to the Shotgun Pipeline Toolkit Source Code License. All rights
+# not expressly granted therein are reserved by Shotgun Software Inc.
+
 ################################################################################
 
 includes:
@@ -89,6 +99,24 @@ settings.tk-multi-snapshot.photoshop.asset_step:
 settings.tk-multi-snapshot.photoshop.shot_step:
   template_snapshot: photoshop_shot_snapshot
   template_work: photoshop_shot_work
+  location: "@apps.tk-multi-snapshot.location"
+
+################################################################################
+
+# ---- After Effects
+
+# asset step
+settings.tk-multi-snapshot.aftereffects.asset_step:
+  template_snapshot: aftereffects_asset_snapshot
+  template_work: aftereffects_asset_work
+  hook_scene_operation: "{engine}/tk-multi-snapshot/basic/scene_operation.py"
+  location: "@apps.tk-multi-snapshot.location"
+
+# shot step
+settings.tk-multi-snapshot.aftereffects.shot_step:
+  template_snapshot: aftereffects_shot_snapshot
+  template_work: aftereffects_shot_work
+  hook_scene_operation: "{engine}/tk-multi-snapshot/basic/scene_operation.py"
   location: "@apps.tk-multi-snapshot.location"
 
 ################################################################################

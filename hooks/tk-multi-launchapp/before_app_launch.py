@@ -4,7 +4,6 @@ Before App Launch Hook
 This hook is executed prior to application launch and is useful if you need
 to set environment variables or run scripts as part of the app initialization.
 """
-
 import tank
 import sgtk
 
