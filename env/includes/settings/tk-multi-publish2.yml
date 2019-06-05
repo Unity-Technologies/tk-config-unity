@@ -153,8 +153,6 @@ settings.tk-multi-publish2.maya.asset_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py:{config}/tk-maya/tk-multi-publish2/basic/collector.py"
   collector_settings:
     Work Template: maya_asset_work
-    FBX Work Template: maya_fbx_work
-    FBX Publish Template: maya_fbx_publish
   publish_plugins:
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py"
@@ -173,6 +171,10 @@ settings.tk-multi-publish2.maya.asset_step:
     hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
     settings:
         Publish Template: asset_alembic_cache
+  - name: Publish FBX to Shotgun
+    hook: "{self}/publish_file.py:{config}/tk-maya/tk-multi-publish2/basic/publish_session_fbx.py"
+    settings:
+        FBX Publish Template: maya_fbx_publish
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 

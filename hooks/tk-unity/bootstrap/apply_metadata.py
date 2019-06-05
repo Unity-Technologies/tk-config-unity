@@ -8,6 +8,14 @@ import unity_connection
 import json
 import os
 import pprint
+import sys
+
+# Fix-up sys.path so we can access our utils
+utils_path = os.path.split(__file__)[0]
+utils_path = os.path.join(utils_path, os.pardir, os.pardir, 'utils')
+utils_path = os.path.normpath(utils_path)
+if utils_path not in sys.path:
+    sys.path.append(utils_path)
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
@@ -20,6 +28,8 @@ class UnityApplyMetadata(HookBaseClass):
         the entity related to the context from which we just bootstrapped and 
         we try to apply it (open scene) 
         """
+        import unity_metadata
+        
         # Call the base class
         super(UnityApplyMetadata, self).on_post_init(engine)
 
@@ -27,31 +37,12 @@ class UnityApplyMetadata(HookBaseClass):
         UnityEditor = unity_connection.get_module('UnityEditor')
 
         # get meta data from the environment variable
-        unity_metadata_json = os.environ.get('SHOTGUN_UNITY_METADATA')
-        if not unity_metadata_json:
+        metadata = unity_metadata.get_metadata_from_entity(engine.context.entity, engine.sgtk.shotgun)
+        if not metadata:
             return
-    
-        unity_metadata = None
-        try:
-            unity_metadata = json.loads(unity_metadata_json)
-        except Exception, e:
-            engine.logger.warning('Exception while parsing the sg_unity_metadata field: {}. The JSON data is probably invalid and will be ignored'.format(e))
-            return
-        
-        if not unity_metadata:
-            return
-        
+
         # Make sure the right project is currently loaded
-        loaded_project = UnityEngine.Application.dataPath
-
-        # Remove /Assets
-        loaded_project = os.path.split(loaded_project)[0]
-        loaded_project = os.path.normpath(loaded_project)
-
-        metadata_project = unity_metadata.get('project_path')
-        metadata_project = os.path.normpath(metadata_project)
-        
-        if metadata_project != loaded_project:
+        if not unity_metadata.relates_to_current_project(metadata):
             engine.logger.warning('Not applying Shotgun metadata as it does not relate to the currently loaded project. Metadata = "{}")'.format(pprint.pformat(metadata_project)))
             
             # TODO: could we call UnityEditor.EditorApplication.OpenProject?
@@ -59,10 +50,9 @@ class UnityApplyMetadata(HookBaseClass):
             return
         
         # Find the scene to open
-        scene_path = unity_metadata.get('scene_path')
-        if not scene_path:
+        if not unity_metadata.relates_to_existing_scene(metadata):
             return
-    
+        
         # open the correct scene in Unity
-        UnityEditor.SceneManagement.EditorSceneManager.OpenScene(scene_path)
+        UnityEditor.SceneManagement.EditorSceneManager.OpenScene(metadata.get('scene_path'))
         
