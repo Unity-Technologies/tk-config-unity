@@ -44,7 +44,7 @@ class UnityApplyMetadata(HookBaseClass):
 
         # Make sure the right project is currently loaded
         if not unity_metadata.relates_to_current_project(metadata):
-            self.logger.warning('Not applying Shotgun metadata as it does not relate to the currently loaded project. Metadata = "{}")'.format(pprint.pformat(metadata_project)))
+            self.logger.warning('Not applying Shotgun metadata as it does not relate to the currently loaded project. Metadata = "{}")'.format(pprint.pformat(metadata)))
             
             # TODO: could we call UnityEditor.EditorApplication.OpenProject?
             #       What would be the effect on the bootstrap, domain reload, etc.?
