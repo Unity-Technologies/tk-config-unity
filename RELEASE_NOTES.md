@@ -7,7 +7,7 @@ NEW FEATURES
 * Updated to tk-unity-0.8
 * Unity can now be launched from Note, Version and Sequence entities
 * Improved review workflow (see documentation in com.unity.integrations.shotgun)
-  * When launched from a Version that was published by Unity, Unity will 
+  * When launched from a Version or Note that was published by Unity, Unity will 
   automatically launch in the right project and scene
 
 **Version**: 1.2.1.1
