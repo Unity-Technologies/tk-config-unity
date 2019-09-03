@@ -9,6 +9,7 @@ NEW FEATURES
 * Improved review workflow (see documentation in com.unity.integrations.shotgun)
   * When launched from a Version or Note that was published by Unity, Unity will 
   automatically launch in the right project and scene
+  * New "Jump to Frame" action for Notes in the Shotgun Panel
 
 **Version**: 1.2.1.1
 
