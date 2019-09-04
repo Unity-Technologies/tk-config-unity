@@ -49,11 +49,11 @@ def get_metadata_from_entity(entity, sg):
         if entity['type'] == 'Note':
             # If the note is linked to a Version entity, try to get the metadata 
             # from that Version entity
-            found_entity = sg.find_one(entity['type'], [['id', 'is', entity['id']]], ['note_links'])
-            note_links = found_entity['note_links']
-            for link in note_links:
-                if link['type'] == 'Version':
-                    metadata = get_metadata_from_entity(link, sg)
+            version = get_version_from_note(entity, sg)
+            if not version:
+                return None
+            
+            metadata = get_metadata_from_entity(version, sg)
                     
             # Add the note frame number to the metadata
             frame_number = _get_frame_from_note(entity, sg)
@@ -101,3 +101,17 @@ def relates_to_existing_scene(metadata):
             return True
 
     return False
+
+def get_version_from_note(note, sg):
+    """
+    Returns the Version entity associated with the passed Note entity
+    """
+    # Retrieve the note links
+    found_entity = sg.find_one(note['type'], [['id', 'is', note['id']]], ['note_links'])
+    note_links = found_entity['note_links']
+    for link in note_links:
+        if link['type'] == 'Version':
+            return link
+        
+    return None
+    
