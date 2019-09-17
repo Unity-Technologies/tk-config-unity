@@ -71,11 +71,10 @@ def get_metadata_from_entity(entity, sg):
     return metadata
 
 def relates_to_current_project(metadata):
-    import unity_connection
-    UnityEngine = unity_connection.get_module('UnityEngine')
-    
+    from sg_client import GetUnityEngine
+
     # Make sure the right project is currently loaded
-    loaded_project = UnityEngine.Application.dataPath
+    loaded_project = GetUnityEngine().Application.dataPath
 
     # Remove /Assets
     loaded_project = os.path.split(loaded_project)[0]
@@ -87,12 +86,13 @@ def relates_to_current_project(metadata):
     return metadata_project == loaded_project
 
 def relates_to_existing_scene(metadata):
-    import unity_connection
+    from sg_client import GetUnityEditor
+    
     metadata_scene_path = metadata.get('scene_path')
     if not metadata_scene_path:
         return False
     
-    UnityEditor = unity_connection.get_module('UnityEditor')
+    UnityEditor = GetUnityEditor()
     
     scene_guids = UnityEditor.AssetDatabase.FindAssets('t:scene')
     for guid in scene_guids:

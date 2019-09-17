@@ -1,7 +1,8 @@
+from sg_client import GetUnityEngine
+
 import json
 import os
 import sgtk
-import unity_connection
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
@@ -39,7 +40,7 @@ class UnitySessionAddMetadataPlugin(HookBaseClass):
             # Make sure the 'sg_unity_metadata' field exists on Version entities
             version_fields = engine.shotgun.schema_field_read('Version')
             if version_fields.get('sg_unity_metadata'):
-                UnityEngine = unity_connection.get_module('UnityEngine')
+                UnityEngine = GetUnityEngine()
                 data_path = UnityEngine.Application.dataPath
                 project_path = os.path.dirname(data_path)
                 

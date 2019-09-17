@@ -1,6 +1,5 @@
-import unity_connection
-
 import sgtk
+from sg_client import GetUnityEngine, GetUnityEditor
 
 import json
 import os
@@ -102,8 +101,8 @@ class UnityActions(HookBaseClass):
                       "Parameters: %s. Shotgun Data: %s" % (name, params, sg_data))
         
         if name == "jump_to_frame":
-            UnityEditor = unity_connection.get_module('UnityEditor')
-            UnityEngine = unity_connection.get_module('UnityEngine')
+            UnityEditor = GetUnityEditor()
+            UnityEngine = GetUnityEngine()
             
             # Open the scene
             metadata = params
