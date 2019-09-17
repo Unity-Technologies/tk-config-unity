@@ -31,7 +31,7 @@ def get_metadata_from_entity(entity, sg):
     
     Returns None if no metadata was found
     """
-    if not entity or not sg:
+    if not entity or not entity.get('type') or not entity.get('id') or not sg:
         return None
     
     metadata_json = None

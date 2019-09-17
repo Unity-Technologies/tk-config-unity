@@ -51,6 +51,25 @@ class BeforeAppLaunch(tank.Hook):
             sgtk = context.sgtk
             sg = sgtk.shotgun
 
+            # Retrieve the metadata for the context entity. The Unity project
+            # of interest might be in there
+            metadata = unity_metadata.get_metadata_from_entity(entity, sg)
+            if metadata:
+                project_path = metadata.get('project_path')
+                if project_path:
+                    # Validate that the project exists on disk
+                    if os.path.exists(project_path):
+                        # Save our extra args in an environment variable as 
+                        # modifying app_args will not work (it is passed by copy)
+                        os.environ['SHOTGUN_EXTRA_ARGS'] = ' -projectPath "{}"'.format(project_path)
+                    else:
+                        log.warning('Ignoring invalid project path associated with the entity: "{}"'.format(project_path))
+
+            # Save the entity we launched from in case we switch the context
+            # entity below
+            os.environ['SHOTGUN_LAUNCH_ENTITY_TYPE'] = entity['type']
+            os.environ['SHOTGUN_LAUNCH_ENTITY_ID'] = str(entity['id'])
+
             # Toolkit does not really support launching from a Version or a Note
             # entity. We need to switch the context back to the supported entity
             # (or task) for which the Version/Note was created. This is similar 
@@ -75,15 +94,3 @@ class BeforeAppLaunch(tank.Hook):
                 else:
                     log.warning('Could not find a Version entity linked to the Note ({}). Some toolkit features might not be available.'.format(entity))
                 
-            metadata = unity_metadata.get_metadata_from_entity(entity, sg)
-            if metadata:
-                project_path = metadata.get('project_path')
-                if project_path:
-                    # Validate that the project exists on disk
-                    if os.path.exists(project_path):
-                        # Save our extra args in an environment variable as 
-                        # modifying app_args will not work (it is passed by copy)
-                        os.environ['SHOTGUN_EXTRA_ARGS'] = ' -projectPath "{}"'.format(project_path)
-                    else:
-                        log.warning('Ignoring invalid project path associated with the entity: "{}"'.format(project_path))
-        

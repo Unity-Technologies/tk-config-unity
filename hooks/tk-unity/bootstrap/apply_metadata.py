@@ -37,8 +37,14 @@ class UnityApplyMetadata(HookBaseClass):
         UnityEngine = unity_connection.get_module('UnityEngine')
         UnityEditor = unity_connection.get_module('UnityEditor')
 
-        # get meta data from the environment variable
-        metadata = unity_metadata.get_metadata_from_entity(engine.context.entity, engine.sgtk.shotgun)
+        # Get metadata from the entity we launched from
+        launch_entity_type = os.environ.get('SHOTGUN_LAUNCH_ENTITY_TYPE')
+        launch_entity_id = os.environ.get('SHOTGUN_LAUNCH_ENTITY_ID')
+        if launch_entity_id:
+            launch_entity_id = int(launch_entity_id)
+
+        launch_entity = { 'type':launch_entity_type, 'id':launch_entity_id }
+        metadata = unity_metadata.get_metadata_from_entity(launch_entity, engine.sgtk.shotgun)
         if not metadata:
             return
 
