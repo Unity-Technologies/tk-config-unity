@@ -4,8 +4,8 @@
 
 This version requires:
 * tk-unity v0.9
-* Python for Unity 2.0.0
 * Shotgun for Unity 0.9.0
+* Python for Unity 2.0.0
 
 NEW FEATURES
 * New "Jump to Frame" action for Notes in the Shotgun Panel
