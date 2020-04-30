@@ -156,7 +156,7 @@ class MayaSessionFBXPublishPlugin(HookBaseClass):
         try:
             self.parent.log_debug("Exporting Maya scene as FBX: {}".format(publish_path))
             cmds.file(publish_path, force=True, options="v=0;", typ="FBX export", pr=True,  ea=True)
-        except Exception, e:
+        except Exception as e:
             self.logger.error("Failed to export FBX: {}".format(e))
             return
 
@@ -171,7 +171,7 @@ def _session_path():
     """
     path = cmds.file(query=True, sn=True)
 
-    if isinstance(path, unicode):
+    if isinstance(path, str):
         path = path.encode("utf-8")
 
     return path
