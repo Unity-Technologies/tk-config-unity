@@ -131,7 +131,7 @@ class UnityActions(HookBaseClass):
                         app.logger.error('Shotgun is unable to jump to frame: The "{}" PlayableDirector does not have a valid Playable Asset assigned.'.format(game_objects[0].name))
 
                     
-                except Exception, e:
+                except Exception as e:
                     app.logger.error('Unable to Jump to Frame: ' + str(e))
             else:
                 app.logger.error('Shotgun is unable to jump to frame: please choose a PlayableDirector and tag it with "{}".'.format(params['main_timeline_tag']))

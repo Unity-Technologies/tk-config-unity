@@ -11,6 +11,7 @@ HookBaseClass = sgtk.get_hook_baseclass()
 # version number along with the metadata
 _metadata_version = '1.0'
 
+logger = sgtk.LogManager.get_logger(__name__)
 
 class UnitySessionAddMetadataPlugin(HookBaseClass):
     """
@@ -39,7 +40,10 @@ class UnitySessionAddMetadataPlugin(HookBaseClass):
         if engine:
             # Make sure the 'sg_unity_metadata' field exists on Version entities
             version_fields = engine.shotgun.schema_field_read('Version')
-            if version_fields.get('sg_unity_metadata'):
+            if not version_fields.get('sg_unity_metadata') or version_fields['sg_unity_metadata'].get('data_type', {}).get('value', '') != 'text':
+                logger.critical("There is no text field 'sg_unity_metadata' on Version entity type. Create one to store Unity metadata when publishing a Version")
+                return
+            else:
                 UnityEngine = GetUnityEngine()
                 data_path = UnityEngine.Application.dataPath
                 project_path = os.path.dirname(data_path)
