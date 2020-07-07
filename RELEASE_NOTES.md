@@ -1,5 +1,11 @@
 ﻿RELEASE NOTES
 
+**Version**: 1.2.9.2
+
+This version requires:
+* tk-unity v0.10
+* Shotgun for Unity 0.10 (com.unity.integrations.shotgun)
+
 **Version**: 1.2.9.1
 
 This version requires:

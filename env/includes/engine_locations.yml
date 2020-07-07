@@ -96,4 +96,4 @@ engines.tk-unity.location:
   type: github_release
   organization: Unity-Technologies
   repository: tk-unity
-  version: v0.9
+  version: v0.10
