@@ -31,6 +31,8 @@ settings.tk-unity.all:
   location: "@engines.tk-unity.location"
   menu_favorites:
   - {app_instance: tk-multi-loader2, name: Load...}
+  - {app_instance: tk-multi-publish2, name: Publish...}
   launch_builtin_plugins: [basic]
   automatic_context_switch: false
   post_init_hook: "{self}/bootstrap/post_init.py:{config}/tk-unity/bootstrap/apply_metadata.py"
+  hide_publish_menu: true
