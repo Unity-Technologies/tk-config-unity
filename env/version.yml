@@ -19,6 +19,7 @@ description: Apps and engines loaded when a Version is loaded.
 includes:
 - ./includes/frameworks.yml
 - ./includes/settings/tk-shotgun.yml
+- ./includes/settings/tk-vred.yml
 - ./includes/settings/tk-unity.yml
 
 ################################################################################
@@ -26,6 +27,7 @@ includes:
 
 engines:
   tk-shotgun: "@settings.tk-shotgun.version"
+  tk-vred: "@settings.tk-vred.version"
   tk-unity: "@settings.tk-unity.all"
 
 ################################################################################
